@@ -17,12 +17,8 @@ string s;
 PwmIn input (PC_0);
 int x=0;
 int i=0;
-bool can;
 
-void increase()
-{
-    i++;
-}
+
 int main()
 {   
     //configuring the LCD --BEGIN--
