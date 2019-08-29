@@ -48,7 +48,7 @@ int main()
             } else if(input.dutycycle()> 0.22 && input.dutycycle() <0.29) {
                 array[i]=0;
                 pc.printf("receiving 0.25\n\r");
-                can = true;
+   
             } else {
                 array[i]=2;
                 pc.printf("dutycyle: %f\n\r",input.dutycycle());
