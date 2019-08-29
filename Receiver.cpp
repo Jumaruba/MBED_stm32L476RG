@@ -1,6 +1,7 @@
 #include "mbed.h"
 #include "PwmIn.h"
 #include <string> 
+#include "TextLCD.h"
 
 
 Serial pc(SERIAL_TX, SERIAL_RX);
@@ -9,7 +10,7 @@ Serial pc(SERIAL_TX, SERIAL_RX);
 TextLCD lcd(D8, D3, D4, D5, D6,D7, TextLCD::LCD8x2);    //setting up the LCD
 
 //arrays for morse translation 
-string letters[] = {"01","1000","1010","100","0", "0010","110","0000","00","0111","101","0100","11","10","111","0110","1101","010","000","1","001","0001","011","1001","1011","1100"};
+string letters[] = {"0122","1000","1010","1002","0222", "0010","1102","0000","0022","0111","1012","0100","1122","1022","1112","0110","1101","0102","0002","1222","0012","0001","0112","1001","1011","1100"};
 string c[] = {"A","B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}; 
 string s;
 
@@ -64,12 +65,13 @@ int main()
         }
         if(i==4) {
             for(int j=0; j<4; j++) {
+                 //transforming array into a string
+                s.push_back(array[j]+48); 
+                
                 pc.printf("array[%c]: %i\n\r\r\r\r", j, array[j]);
                 array[j]=2;
                 i=0;
                 
-                //transforming array into a string
-                s.push_back(array[j]+48); 
             }
                 //printing the result on LCD
                 for (int i = 0; i < 26; i++){
