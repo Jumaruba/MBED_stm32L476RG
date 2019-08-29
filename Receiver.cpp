@@ -11,7 +11,8 @@ TextLCD lcd(D8, D3, D4, D5, D6,D7, TextLCD::LCD8x2);    //setting up the LCD
 //arrays for morse translation 
 string letters[] = {"01","1000","1010","100","0", "0010","110","0000","00","0111","101","0100","11","10","111","0110","1101","010","000","1","001","0001","011","1001","1011","1100"};
 string c[] = {"A","B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}; 
-string s; 
+string s;
+
 PwmIn input (PC_0);
 int x=0;
 int i=0;
@@ -47,10 +48,6 @@ int main()
             input.pulsewidth();
             if(input.dutycycle() >0.72 && input.dutycycle()<0.79) {
                 array[i]=1;
-
-                /*if (can)
-                    increase();
-                can = false;  */
                 pc.printf("receiving 0.75\n\r");
             } else if(input.dutycycle()> 0.22 && input.dutycycle() <0.29) {
                 array[i]=0;
@@ -72,14 +69,16 @@ int main()
                 i=0;
                 
                 //transforming array into a string
-                
                 s.push_back(array[j]+48); 
             }
+                //printing the result on LCD
                 for (int i = 0; i < 26; i++){
                      if (s == letters[i])
-                    lcd.printf("%s   %s", letters[i], c[i]);
-                }    
+                        lcd.printf("%s   %s", letters[i], c[i]);
+                }
+            //reseting the variable
             s = ""; 
+            
             wait(8);
         }
         
