@@ -17,47 +17,30 @@ bool ok = false;
 //END ---------------------
 
 PwmIn input (PC_0);
-
 int i=0;
+
 //Working Project
 int main()
 {
-    int array[4]= {2,2,2,2};
+    int array[4]= {2,2,2,2};    //empty array
 
-    //DISPLAY________________
-
-    //int array2[4]={0,1,1,0};
     //configuring the LCD --BEGIN--
     lcd.cls();
     lcd.setContrast(00);
     lcd.setInvert(true);
     //configuring the LCD --END--
 
-    /*for(int j=0; j<4; j++) {
-        //transforming array into a string
-        s.push_back(array[j]+48);
-
-    }
-    //printing the result on LCD
-    for (int i = 0; i < 26; i++) {
-        if (s == letters[i]) {
-            lcd.printf("%s   %s", letters[i], c[i]);
-            ok = true;
-        }
-    }
-    if (!ok)
-        lcd.printf("ERROR!");
-    //reseting the variable
-    s = "";
-
-    //END____________________*/
-
     int i = 0;
-    pc.printf("Hello World !\n");
+    
+    pc.printf("Morse Code!\n");
+    
     while(1) {
         for(int x=0; x<4; x++) {
-            input.period();
+            
+            input.period();    
             input.pulsewidth();
+            
+            //reading the input
             while(input.dutycycle()<0.2 ||input.dutycycle()>0.3 && input.dutycycle()<0.7 ||input.dutycycle()>0.8) {
                 input.period();
                 input.pulsewidth();
@@ -82,6 +65,8 @@ int main()
 
             i++;
         }
+        
+        //storing information in the array
         if(i==4) {
             for(int j=0; j<4; j++) {
                 pc.printf("array[%c]: %i\n\r\r\r\r", j, array[j]);
@@ -89,6 +74,7 @@ int main()
                 array[j]=2;
                 i=0;
             }
+            
             //printing the result on LCD
             for (int i = 0; i < 26; i++) {
                 if (s == letters[i]) {

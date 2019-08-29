@@ -19,10 +19,7 @@ DigitalOut led3(D10);
 Timer t;
 Timer t2;
 
-
-
 bool runOnce=true;
-
 void toggle(void);
 void toggle2(void);
 
@@ -39,11 +36,14 @@ string s;
 
 int main()
 {
-    btn.rise(&toggle); //wenn rauf
+    btn.rise(&toggle);  //wenn rauf
     btn.fall(&toggle2); //wenn runer
+    
+    //LED's off
     led1 = 1;
     led2=1;
     led3=1;
+    
     pc.printf("Start!\n\r");
     receiver.period(4.0f);
     receiver.write(0.5f);
@@ -68,15 +68,16 @@ int main()
     }
     //reseting the variable
     s = "";
-
+    //DISPLAY END---------------------------------- need some changing
+    
     while(1) {
         if(btnstate>=5) {
             receiver.write(0.5f); //standard signal
         }
-        runOnce=true; //debounce
+        runOnce=true;            //debounce
         t2.reset();
 
-        if(btnstate==4) { //if sent 4 signals
+        if(btnstate==4) {       //if sent 4 signals
             pc.printf("seq sent, wait 2 sec\n\r");
             btnstate++;
             wait(3);
