@@ -24,8 +24,7 @@ int main()
     //configuring the LCD --BEGIN--
     lcd.cls();
     lcd.setContrast(00); 
-    lcd.setInvert(true);  
-    servo.period(2); 
+    lcd.setInvert(true);   
     //configuring the LCD --END--
     
     int array[4]= {2,2,2,2};
